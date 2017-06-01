@@ -16,9 +16,7 @@ hr {
 	color: #787e7e;
 }
 
-.learn h3,
-.learn h4,
-.learn h5 {
+.learn h3, .learn h4, .learn h5 {
 	margin: 10px 0;
 	font-weight: 500;
 	line-height: 1.2;
@@ -117,7 +115,7 @@ hr {
 	border-top-color: rgba(0, 0, 0, .04);
 }
 
-.learn-bar > .learn {
+.learn-bar>.learn {
 	position: absolute;
 	width: 272px;
 	top: 8px;
@@ -129,13 +127,12 @@ hr {
 	transition-duration: 500ms;
 }
 
-@media (min-width: 899px) {
+@media ( min-width : 899px) {
 	.learn-bar {
 		width: auto;
 		padding-left: 300px;
 	}
-
-	.learn-bar > .learn {
+	.learn-bar>.learn {
 		left: 8px;
 	}
 }
