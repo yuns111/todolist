@@ -6,7 +6,7 @@ public class Todo {
 	
 	private int id;
 	private String todo;
-	private int conpleted;
+	private int completed;
 	private Timestamp date;
 	
 	public int getId() {
@@ -21,11 +21,11 @@ public class Todo {
 	public void setTodo(String todo) {
 		this.todo = todo;
 	}
-	public int getConpleted() {
-		return conpleted;
+	public int getCompleted() {
+		return completed;
 	}
-	public void setConpleted(int conpleted) {
-		this.conpleted = conpleted;
+	public void setConpleted(int completed) {
+		this.completed = completed;
 	}
 	public Timestamp getDate() {
 		return date;
