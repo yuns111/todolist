@@ -16,6 +16,13 @@
         	completedTodoAjax(id);
         }
     });
+	
+	//삭제 이벤트
+	$('.destroy').click(function() {
+		var id = $(this).parent().parent().children(".edit").val();
+		var destory = deleteTodoAjax(id);
+		if(destory) listAll();
+	})
 
 	function listAll() { //할일 리스트 불러오기(완료 구분x)
 
@@ -92,6 +99,19 @@
 				
 			}
 		});
+	}
+	
+	function deleteTodoAjax(id) {
+		var result;
+		$.ajax({
+			url: '/api/todos/'+id,
+			type: 'DELETE',
+			async: false,
+			success: function(data){
+				result = data;
+			}
+		});
+		return result;
 	}
 	
 })(window);

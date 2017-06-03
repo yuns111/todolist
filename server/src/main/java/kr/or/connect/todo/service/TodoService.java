@@ -29,4 +29,8 @@ public class TodoService {
 	public int update(Integer id) {
 		return dao.update(id);
 	}
+	
+	public int delete(Integer id) {
+		return dao.delete(id);
+	}
 }
