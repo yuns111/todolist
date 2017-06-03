@@ -33,4 +33,12 @@ public class TodoService {
 	public int delete(Integer id) {
 		return dao.delete(id);
 	}
+	
+	public int countTodo() {
+		return dao.countTodo();
+	}
+	
+	public Collection<Todo> findByFilter(Integer completed) {
+		return dao.selectFilter(completed);
+	}
 }

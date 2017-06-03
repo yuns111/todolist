@@ -49,4 +49,14 @@ public class TodoDao {
 		Map<String, ?> params = Collections.singletonMap("id", id);
 		return jdbc.update(TodoSqls.DELETE_BY_ID, params);
 	}
+	
+	public int countTodo() {
+		Map<String, Object> params = Collections.emptyMap();
+		return jdbc.queryForObject(TodoSqls.COUNT_TODO, params, Integer.class);
+	}
+	
+	public List<Todo> selectFilter(Integer completed) {
+		Map<String, ?> params = Collections.singletonMap("completed", completed);
+		return jdbc.query(TodoSqls.SELECT_BY_FILTER, params, rowMapper);
+	}
 }

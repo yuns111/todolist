@@ -51,4 +51,14 @@ public class TodoController {
 	int remove(@PathVariable Integer id) {
 		return service.delete(id);
 	}
+	
+	@GetMapping("/count")
+	int countTodo() {
+		return service.countTodo();
+	}
+	
+	@GetMapping("/{completed}")
+	Collection<Todo> readFilterList(@PathVariable Integer completed) {
+		return service.findByFilter(completed);
+	}
 }
