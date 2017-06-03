@@ -1,4 +1,4 @@
-package kr.or.connect.domain;
+package kr.or.connect.todo.domain;
 
 import java.sql.Timestamp;
 
@@ -24,7 +24,7 @@ public class Todo {
 	public int getCompleted() {
 		return completed;
 	}
-	public void setConpleted(int completed) {
+	public void setCompleted(int completed) {
 		this.completed = completed;
 	}
 	public Timestamp getDate() {

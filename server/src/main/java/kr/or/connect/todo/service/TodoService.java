@@ -4,7 +4,7 @@ import java.util.Collection;
 
 import org.springframework.stereotype.Service;
 
-import kr.or.connect.domain.Todo;
+import kr.or.connect.todo.domain.Todo;
 import kr.or.connect.todo.persistence.TodoDao;
 
 @Service
@@ -24,5 +24,9 @@ public class TodoService {
 		Integer id = dao.insert(todo);
 		todo.setId(id);
 		return todo;
+	}
+	
+	public int update(Integer id) {
+		return dao.update(id);
 	}
 }

@@ -7,6 +7,6 @@ public class TodoSqls {
 	static final String SELECT_ALL =
 			"SELECT id, todo, completed FROM todo";
 	
-	static final String INSERT_TODO = 
-			"INSERT INTO TODO (todo) values (:todo)";
+	static final String UPDATE_BY_ID = 
+			"UPDATE TODO SET completed = 1 WHERE id= :id";
 }
