@@ -19,4 +19,10 @@ public class TodoService {
 	public Collection<Todo> findAll() {
 		return dao.selectAll();
 	}
+	
+	public Todo create(Todo todo) {
+		Integer id = dao.insert(todo);
+		todo.setId(id);
+		return todo;
+	}
 }
