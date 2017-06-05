@@ -41,4 +41,8 @@ public class TodoService {
 	public Collection<Todo> findByFilter(Integer completed) {
 		return dao.selectFilter(completed);
 	}
+	
+	public int deleteCompleted() {
+		return dao.deleteCompleted();
+	}
 }

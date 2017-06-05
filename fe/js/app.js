@@ -9,14 +9,14 @@
 		//todo입력 이벤트
 		$('.new-todo').keyup(function(e) {
 			if (e.keyCode == 13) writeTodo();        
-		});
+		})
 
 		//완료 이벤트
 		$('.toggle').change(function() {
 			if(this.checked) {
 				$(this).parent().parent().addClass("completed");
 				var id = $(this).parent().parent().children(".edit").val();
-				
+
 				var completed = completedTodoAjax(id);
 				if(completed){
 					var listFilter = $('.selected').text();
@@ -31,12 +31,12 @@
 					}
 				}
 			}
-		});
+		})
 
 		//삭제 이벤트
 		$('.destroy').click(function() {
 			var id = $(this).parent().parent().children(".edit").val();
-			
+
 			var destory = deleteTodoAjax(id);
 			if(destory) {
 				var listFilter = $('.selected').text();
@@ -67,6 +67,23 @@
 			else {
 				listAllAjax();
 			}
+		})
+
+		//완료 todo 삭제 이벤트
+		$('.clear-completed').click(function() {
+			
+			deleteCompletedAjax();
+			var listFilter = $('.selected').text();
+			if(listFilter == "Active"){
+				listFilterAjax(0);
+			} 
+			else if(listFilter == "Completed") {
+				listFilterAjax(1);
+			}
+			else {
+				listAllAjax();
+			}
+			
 		})
 	}
 
@@ -106,7 +123,7 @@
 		if(text != ''){
 			var newTodo = {};
 			newTodo.todo = text;
-			
+
 			var todo = writeTodoAjax(newTodo);
 			if(todo.todo) {
 				var listFilter = $('.selected').text();
@@ -204,5 +221,14 @@
 			}
 		});
 		printList(todoList);
+	}
+	
+	function deleteCompletedAjax() {
+		$.ajax({
+			url: 'api/todos',
+			type: 'DELETE',
+			success: function(data){
+			}
+		});
 	}
 })(window);

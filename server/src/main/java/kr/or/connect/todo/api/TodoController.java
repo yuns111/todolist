@@ -61,4 +61,9 @@ public class TodoController {
 	Collection<Todo> readFilterList(@PathVariable Integer completed) {
 		return service.findByFilter(completed);
 	}
+	
+	@DeleteMapping()
+	int removeCompletedTodo() {
+		return service.deleteCompleted();
+	}
 }

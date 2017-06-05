@@ -59,4 +59,9 @@ public class TodoDao {
 		Map<String, ?> params = Collections.singletonMap("completed", completed);
 		return jdbc.query(TodoSqls.SELECT_BY_FILTER, params, rowMapper);
 	}
+	
+	public int deleteCompleted() {
+		Map<String, Object> params = Collections.emptyMap();
+		return jdbc.update(TodoSqls.DELETE_ALL_COMPLETED, params);
+	}
 }
