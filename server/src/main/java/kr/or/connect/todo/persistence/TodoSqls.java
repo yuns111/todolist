@@ -13,9 +13,6 @@ public class TodoSqls {
 	static final String COUNT_TODO = 
 			"SELECT COUNT(*) FROM TODO WHERE completed = 0";
 	
-	static final String SELECT_BY_FILTER =
-			"SELECT * FROM todo WHERE completed= :completed";
-	
 	static final String DELETE_ALL_COMPLETED = 
 			"DELETE FROM todo WHERE completed = 1";
 	

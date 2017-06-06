@@ -6,7 +6,6 @@ import static org.junit.Assert.assertThat;
 
 import java.util.List;
 
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +29,6 @@ public class TodoDaoTest {
 		assertThat(allTodos, is(notNullValue()));
 	}
 	
-	@Ignore
 	@Test
 	public void shouldInsertAndSelect() {
 		
@@ -54,6 +52,6 @@ public class TodoDaoTest {
 		dao.update(id);
 		
 		selected = dao.selectOne(id);
-		assertThat(selected.getCompleted(),is("1"));
+		assertThat(selected.getCompleted(),is(1));
 	}
 }

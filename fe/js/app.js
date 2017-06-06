@@ -19,16 +19,7 @@
 
 				var completed = completedTodoAjax(id);
 				if(completed){
-					var listFilter = $('.selected').text();
-					if(listFilter == "Active"){
-						listFilterAjax(0);
-					} 
-					else if(listFilter == "Completed") {
-						listFilterAjax(1);
-					}
-					else {
-						listAllAjax();
-					}
+					listAllAjax();
 				}
 			}
 		})
@@ -39,16 +30,7 @@
 
 			var destory = deleteTodoAjax(id);
 			if(destory) {
-				var listFilter = $('.selected').text();
-				if(listFilter == "Active"){
-					listFilterAjax(0);
-				} 
-				else if(listFilter == "Completed") {
-					listFilterAjax(1);
-				}
-				else {
-					listAllAjax();
-				}
+				listAllAjax();
 			}
 		})
 
@@ -58,36 +40,18 @@
 			$(this).addClass("selected");
 			var text = $(this).text();
 
-			if(text == "Active"){
-				listFilterAjax(0);
-			} 
-			else if(text == "Completed") {
-				listFilterAjax(1);
-			}
-			else {
-				listAllAjax();
-			}
+			filterTodoList(text);
 		})
 
 		//완료 todo 삭제 이벤트
 		$('.clear-completed').click(function() {
 			
 			deleteCompletedAjax();
-			var listFilter = $('.selected').text();
-			if(listFilter == "Active"){
-				listFilterAjax(0);
-			} 
-			else if(listFilter == "Completed") {
-				listFilterAjax(1);
-			}
-			else {
-				listAllAjax();
-			}
-			
+			listAllAjax();			
 		})
 	}
 
-	function printList(todoList) { //전체 목록
+	function printList(todoList) { //목록 출력 메서드
 
 		$('.todo-list').children().remove();
 
@@ -111,6 +75,7 @@
 
 		}
 
+		filterTodoList($('.selected').text());
 		var todoNum = countTodoAjax();
 		str = "<strong>"+todoNum+"</strong> item left";
 		$('.todo-count').html(str);
@@ -118,7 +83,7 @@
 
 	};
 
-	function writeTodo() {
+	function writeTodo() { //글쓰기 후 리스트 출력 호출
 		var text = $('.new-todo').val();
 		if(text != ''){
 			var newTodo = {};
@@ -126,18 +91,26 @@
 
 			var todo = writeTodoAjax(newTodo);
 			if(todo.todo) {
-				var listFilter = $('.selected').text();
-				if(listFilter == "Active"){
-					listFilterAjax(0);
-				} 
-				else if(listFilter == "Completed") {
-					listFilterAjax(1);
-				}
-				else {
-					listAllAjax();
-				}
+				
+				listAllAjax();
+
 			}
 			$('.new-todo').val("");
+		}
+	}
+	
+	function filterTodoList(text) { //필터 선택 메서드
+		if(text == "Active"){
+			$('.todo-list > li').show(); 
+			$('.completed').hide();
+		} 
+		else if(text == "Completed") {
+			$('.todo-list > li').hide(); 
+			$('.completed').show();
+			
+		}
+		else {
+			$('.todo-list > li').show(); 
 		}
 	}
 
@@ -210,19 +183,6 @@
 		return result;
 	}
 
-	function listFilterAjax(completed) {
-		var todoList;
-		$.ajax({
-			url: 'api/todos/'+completed,
-			type: 'GET',
-			async: false,
-			success: function(data){
-				todoList = data;
-			}
-		});
-		printList(todoList);
-	}
-	
 	function deleteCompletedAjax() {
 		$.ajax({
 			url: 'api/todos',
@@ -231,4 +191,5 @@
 			}
 		});
 	}
+	
 })(window);
