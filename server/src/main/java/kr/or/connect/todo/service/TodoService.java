@@ -45,4 +45,8 @@ public class TodoService {
 	public int deleteCompleted() {
 		return dao.deleteCompleted();
 	}
+	
+	public Todo selectOne(Integer id) {
+		return dao.selectOne(id);
+	}
 }

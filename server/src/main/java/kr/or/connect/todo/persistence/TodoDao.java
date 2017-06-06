@@ -64,4 +64,9 @@ public class TodoDao {
 		Map<String, Object> params = Collections.emptyMap();
 		return jdbc.update(TodoSqls.DELETE_ALL_COMPLETED, params);
 	}
+	
+	public Todo selectOne(Integer id) {
+		Map<String, ?> params = Collections.singletonMap("id", id);
+		return jdbc.queryForObject(TodoSqls.SELECT_BY_ID, params, rowMapper);
+	}
 }

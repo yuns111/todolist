@@ -6,6 +6,7 @@ import static org.junit.Assert.assertThat;
 
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,5 +28,32 @@ public class TodoDaoTest {
 	public void shouldSelectAll() {
 		List<Todo> allTodos = dao.selectAll();
 		assertThat(allTodos, is(notNullValue()));
+	}
+	
+	@Ignore
+	@Test
+	public void shouldInsertAndSelect() {
+		
+		Todo todo = new Todo();
+		todo.setTodo("투두 테스트");
+		Integer id = dao.insert(todo);
+		
+		Todo selected = dao.selectOne(id);
+		assertThat(selected.getTodo(), is("투두 테스트"));
+	}
+	
+	@Test
+	public void shouldUpdate() {
+		
+		Todo todo = new Todo();
+		todo.setTodo("오늘까지 완료");
+		Integer id = dao.insert(todo);
+		
+		Todo selected = dao.selectOne(id);
+		
+		dao.update(id);
+		
+		selected = dao.selectOne(id);
+		assertThat(selected.getCompleted(),is("1"));
 	}
 }

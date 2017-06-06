@@ -18,4 +18,7 @@ public class TodoSqls {
 	
 	static final String DELETE_ALL_COMPLETED = 
 			"DELETE FROM todo WHERE completed = 1";
+	
+	static final String SELECT_BY_ID = 
+			"SELECT * FROM todo WHERE id = :id";
 }
